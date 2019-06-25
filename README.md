@@ -6,18 +6,18 @@ The following API calls and information are available
 
 **General**
 
-[GET /exchange/info - Exchange Information]()
+[GET /exchange/info - Exchange Information](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
 
-[GET /exchange/symbols - Available symbols]()
+[GET /exchange/symbols - Available symbols](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
 
-[GET /exchange/trades - Historical executed trades]()
+[GET /exchange/trades - Historical executed trades](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
 
-[GET /exchange/orders/snapshot - Current Orderbook Snapshot]()
+[GET /exchange/orders/snapshot - Current Orderbook Snapshot](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
 
 
 ## General
 
-- The base endpoint is: https://api.go.exchange/
+- The base endpoint is: `https://api.go.exchange/`
 - All endpoints return either a JSON Object or array
 - All data is returned in ascending order, oldest first, newest last
 - HTTP 4XX return codes are used for malformed requests; the issue is on the sender's side.
@@ -100,7 +100,7 @@ Example:
 ```json
 {
    "result":[
-      
+       {
          "amount_decimal_places":4,
          "base_currency_code":"BCH",
          "min_amount":"0.0001",
@@ -109,7 +109,7 @@ Example:
          "quote_currency_code":"BTC",
          "total_decimal_places":10
       },
-      
+      {
          "amount_decimal_places":5,
          "base_currency_code":"BCH",
          "min_amount":"0.00001",
@@ -118,7 +118,7 @@ Example:
          "quote_currency_code":"USDC",
          "total_decimal_places":7
       },
-      
+      {
          "amount_decimal_places":6,
          "base_currency_code":"BTC",
          "min_amount":"0.000001",
@@ -127,7 +127,7 @@ Example:
          "quote_currency_code":"USDC",
          "total_decimal_places":8
       },
-      
+      {
          "amount_decimal_places":4,
          "base_currency_code":"ETH",
          "min_amount":"0.0002",
@@ -136,7 +136,7 @@ Example:
          "quote_currency_code":"BTC",
          "total_decimal_places":10
       },
-      
+      {
          "amount_decimal_places":5,
          "base_currency_code":"ETH",
          "min_amount":"0.00002",
@@ -145,7 +145,7 @@ Example:
          "quote_currency_code":"USDC",
          "total_decimal_places":7
       },
-      
+      {
          "amount_decimal_places":4,
          "base_currency_code":"LTC",
          "min_amount":"0.0005",
@@ -154,7 +154,7 @@ Example:
          "quote_currency_code":"BTC",
          "total_decimal_places":10
       },
-      
+      {
          "amount_decimal_places":5,
          "base_currency_code":"LTC",
          "min_amount":"0.00005",
@@ -163,7 +163,7 @@ Example:
          "quote_currency_code":"USDC",
          "total_decimal_places":7
       },
-      
+      {
          "amount_decimal_places":2,
          "base_currency_code":"OMG",
          "min_amount":"0.01",
@@ -172,7 +172,7 @@ Example:
          "quote_currency_code":"BTC",
          "total_decimal_places":8
       },
-      
+      {
          "amount_decimal_places":2,
          "base_currency_code":"OMG",
          "min_amount":"0.01",
@@ -181,7 +181,7 @@ Example:
          "quote_currency_code":"ETH",
          "total_decimal_places":8
       },
-      
+      {
          "amount_decimal_places":2,
          "base_currency_code":"OMG",
          "min_amount":"0.01",
@@ -189,8 +189,8 @@ Example:
          "price_decimal_places":4,
          "quote_currency_code":"USDC",
          "total_decimal_places":6
-      
-   
+      }
+   ]
 }
 ```
 
@@ -225,7 +225,7 @@ Example:
       "limit":5
    },
    "result":[
-      
+      {
          "amount":"1.57",
          "id":"trade_01DE6MDX0B6CZA3W5FXDHGKGJY",
          "price":"0.007374437",
@@ -233,7 +233,7 @@ Example:
          "symbol":"OMGETH",
          "timestamp":"2019-06-25T06:16:05.911015"
       },
-      
+      {
          "amount":"1.42",
          "id":"trade_01DE6MBRJ4PXTMVH6807VEK8QS",
          "price":"0.007406381",
@@ -241,7 +241,7 @@ Example:
          "symbol":"OMGETH",
          "timestamp":"2019-06-25T06:14:55.832003"
       },
-      
+      {
          "amount":"1.85",
          "id":"trade_01DE6M9P5CRVY165D8WD5KH5BQ",
          "price":"0.007419794",
@@ -249,7 +249,7 @@ Example:
          "symbol":"OMGETH",
          "timestamp":"2019-06-25T06:13:47.835913"
       },
-      
+      {
          "amount":"1.12",
          "id":"trade_01DE6M8G0KAXP4KM1K5FKAJJPX",
          "price":"0.007432624",
@@ -257,15 +257,15 @@ Example:
          "symbol":"OMGETH",
          "timestamp":"2019-06-25T06:13:08.767458"
       },
-      
+      {
          "amount":"0.54",
          "id":"trade_01DE6M78R0Q38SVM19C8ZCM783",
          "price":"0.007438031",
          "side":"buy",
          "symbol":"OMGETH",
          "timestamp":"2019-06-25T06:12:28.604776"
-      
-   
+      }
+   ]
 }
 ```
  
@@ -294,30 +294,34 @@ Example
 {
    "result":{
       "buy":[
-                  
+         {        
             "amount":"35.54",
             "price":"2.2484",
             "symbol":"OMGUSDC",
             "total":"79.908136"
          },
-         
+         {
+        
             "amount":"85.94",
             "price":"2.2464",
             "symbol":"OMGUSDC",
             "total":"193.055616"
-         
+         }
       ],
       "sell":[
-         
+         {
             "amount":"122.54",
             "price":"2.3733",
             "symbol":"OMGUSDC",
             "total":"290.824182"
          },
-         
+         {
             "amount":"72.91",
             "price":"2.3756",
             "symbol":"OMGUSDC",
-            "total":"173.204996"  
+            "total":"173.204996"
+         }
+      ]
+    }
 }
 ```
