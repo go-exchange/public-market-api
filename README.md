@@ -39,11 +39,11 @@ None
 JSON Object with the following:
 
 - `name`: The name of the exchange
-- `description`: A one paragraph description in plain text (no html)
-- `logo`: A URL to our your exchange's logo. It should be an SVG or a 500x500 PNG
-- `website`: A URL to your  our exchange
+- `description`: A one paragraph description in plain text
+- `logo`: A URL to our logo
+- `website`: A URL to our exchange
 - `twitter`: Twitter username to your exchange (without @)
-- `capability`: An object describing the endpoints this API integration implements. If not provided, false is assumed for all capabilities. Ift a capability is omitted, it is assumed to be false.
+- `capability`: An object describing the endpoints this API implements.
     - `markets`: boolean indicating markets endpoint is implemented
     - `trades`: boolean indicating trades endpoint is implemented
     - `tradesByTimestamp`: boolean indicating trades by timestamp endpoint is implemented
