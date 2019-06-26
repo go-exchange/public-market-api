@@ -1,18 +1,18 @@
 # Public Market Data API
 
-The main goal of a Public Market Data API is to be able to provide key information about GO.Exchange in a transparent way. 
+The main goal of a Public Market Data API is to be able to provide key information about GO.Exchange in a transparent way.
 
-The following API calls and information are available 
+The following API calls and information are available
 
 **General**
 
-[GET /exchange/info - Exchange Information](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
+[GET /exchange/info - Exchange information](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
 
-[GET /exchange/symbols - Available symbols](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
+[GET /exchange/symbols - Available markets](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangesymbols---available-markets)
 
-[GET /exchange/trades - Historical executed trades](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
+[GET /exchange/trades - Historical executed trades](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangetradessymbol---historical-executed-trades)
 
-[GET /exchange/orders/snapshot - Current Orderbook Snapshot](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
+[GET /exchange/orders/snapshot - Current Orderbook Snapshot](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeorder-booksymbol---current-order-book-snapshot)
 
 
 ## General
@@ -25,7 +25,7 @@ The following API calls and information are available
 - For GET endpoints, parameters must be sent as a query string.
 - Parameters may be sent in any order.
 
-### GET /exchange/info - Exchange Information
+### GET /exchange/info - Exchange information
 
 The /info endpoint returns information about the exchange as a whole, and is used by aggregators to display information about our exchange to users.
 
@@ -38,11 +38,11 @@ None
 
 JSON Object with the following:
 
-- `name`: The name of the exchange
+- `name`: The name of our exchange
 - `description`: A one paragraph description in plain text
 - `logo`: A URL to our logo
 - `website`: A URL to our exchange
-- `twitter`: Twitter username to your exchange (without @)
+- `twitter`: A URL to our twitter profile
 - `capability`: An object describing the endpoints this API implements.
     - `markets`: boolean indicating markets endpoint is implemented
     - `trades`: boolean indicating trades endpoint is implemented
@@ -57,22 +57,22 @@ Example:
 
 ```json
 {
-   "result":{
-      "capability":{
-         "candles":false,
-         "markets":true,
-         "orders":false,
-         "orders_snapshot":true,
-         "orders_socket":false,
-         "trades":true,
-         "trades_by_timestamp":false,
-         "trades_socket":false
-      },
-      "description":"GO.Exchange",
-      "logo":"https://go.exchange/asset/logo.png",
-      "name":"GO.Exchange",
-      "twitter":"https://twitter.com/GOExchangeHQ",
-      "website":"https://go.exchange" 
+    "name":"GO.Exchange",
+    "description":"GO.Exchange",
+    "logo":"https://go.exchange/asset/logo.png",
+    "twitter":"https://twitter.com/GOExchangeHQ",
+    "website":"https://go.exchange",
+    "result":{
+    "capability":{
+        "candles":false,
+        "markets":true,
+        "orders":false,
+        "orders_snapshot":true,
+        "orders_socket":false,
+        "trades":true,
+        "trades_by_timestamp":false,
+        "trades_socket":false
+    }
 }
 ```
 
@@ -200,7 +200,7 @@ The /trades endpoint returns executed trades historically for a given market (pr
 
 #### Parameters
 
-- `:symbol`: A symbol name from the /symbols endpoint
+- `:symbol`: **(required)** A symbol name from the /symbols endpoint
 - `after`: An ID of the next page from /trades response. If none is provided, the latest trades will be returned
 - `before`: An ID of the previous page from /trades response. If none is provided, the latest trades will be returned
 - `limit`: the limit number of the result in /trades response. If none is provided, the default value is 20 and the maximum is 50
@@ -210,9 +210,9 @@ The /trades endpoint returns executed trades historically for a given market (pr
 JSON array of trade result object for the given symbol after (and not including) the trade ID provided, with the following properties:
 
 - `id`: A string ID for the trade that is unique within the scope of the market
-- `timestamp`: Timestamp of the trade 
+- `timestamp`: Timestamp of the trade
 - `price`: The price for one unit of the base currency expressed in the quote currency as a string that is parsable to a positive number.
-- `amount`: The amount of the base currency that was traded as a string that is parsable to a positive number. 
+- `amount`: The amount of the base currency that was traded as a string that is parsable to a positive number.
 - `side`: The direction of the trade [buy, sell]
 
 Example:
@@ -268,21 +268,21 @@ Example:
    ]
 }
 ```
- 
+
 ### GET /exchange/order-book/:symbol - Current Order-book Snapshot
 
 #### Parameters
 
-- `:symbol`: Required A symbol name from the /symbols endpoint
+- `:symbol`: **(required)** A symbol name from the /symbols endpoint
 
 #### Response
 
 JSON object of all buy and sell that are currently open for the provided symbol, with the following properties:
-- `buy`: Required a list of all open buy orders
-- `sell`: Required as list of all open sell orders
-- `timestamp`: Required the timestamp this snapshot
+- `buy`: a list of all open buy orders
+- `sell`: as list of all open sell orders
+- `timestamp`: the timestamp this snapshot
 
-Each order is a tuple with the following entries:
+Each order is an object with the following entries:
 - `price`: The price for one unit of the base currency expressed in the quote currency as a JSON number
 - `amount`: The amount of the base currency available at this price point as a JSON number
 - `symbol`: symbol name
@@ -301,7 +301,7 @@ Example
             "total":"79.908136"
          },
          {
-        
+
             "amount":"85.94",
             "price":"2.2464",
             "symbol":"OMGUSDC",
