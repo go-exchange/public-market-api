@@ -8,6 +8,8 @@ The following API calls and information are available
 
 [GET /exchange/info - Exchange information](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeinfo---exchange-information)
 
+[GET /exchange/ticker - 24hr volume ticker](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangeticker---24hr-volume-ticker)
+
 [GET /exchange/symbols - Available markets](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangesymbols---available-markets)
 
 [GET /exchange/trades - Historical executed trades](https://github.com/go-exchange/public-market-api/blob/master/README.md#get-exchangetradessymbol---historical-executed-trades)
@@ -73,6 +75,90 @@ Example:
         "trades_by_timestamp":false,
         "trades_socket":false
     }
+}
+```
+
+### GET /exchange/ticker - 24hr volume ticker
+
+The /ticker endpoint returns a list of ticker information for each market.
+
+#### Parameters
+
+None
+
+#### Response
+
+JSON result array of objects with the following properties:
+- `last_price`: The amount decimal places supporting by the symbol
+- `symbol`: Market symbol name
+- `timestamp`: Timestamp of the ticker information
+- `volume_24h`: Volume in the last 24 hours
+Example:
+
+```json
+{  
+   "result":[  
+      {  
+         "last_price":"0.041875",
+         "symbol":"BCHBTC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"0.0000041875"
+      },
+      {  
+         "last_price":"477.63",
+         "symbol":"BCHUSDC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"0.0047763"
+      },
+      {  
+         "last_price":"12586.96",
+         "symbol":"BTCUSDC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"2903.71281028"
+      },
+      {  
+         "last_price":"0.026285",
+         "symbol":"ETHBTC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"0.0173448828"
+      },
+      {  
+         "last_price":"330.76",
+         "symbol":"ETHUSDC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"3832.6506813"
+      },
+      {  
+         "last_price":"0.011849",
+         "symbol":"LTCBTC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"0.0000059245"
+      },
+      {  
+         "last_price":"134.06",
+         "symbol":"LTCUSDC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"180.4742811"
+      },
+      {  
+         "last_price":"0.000207",
+         "symbol":"OMGBTC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"0.16628236"
+      },
+      {  
+         "last_price":"0.007863",
+         "symbol":"OMGETH",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"21.72040669"
+      },
+      {  
+         "last_price":"2.5993",
+         "symbol":"OMGUSDC",
+         "timestamp":"2019-06-26 08:29:10.466380",
+         "volume_24h":"25529.394564"
+      }
+   ]
 }
 ```
 
