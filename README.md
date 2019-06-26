@@ -57,22 +57,22 @@ Example:
 
 ```json
 {
-  "name":"GO.Exchange",
-  "description":"GO.Exchange",
-  "logo":"https://go.exchange/asset/logo.png",
-  "twitter":"https://twitter.com/GOExchangeHQ",
-  "website":"https://go.exchange",
-   "result":{
-      "capability":{
-         "candles":false,
-         "markets":true,
-         "orders":false,
-         "orders_snapshot":true,
-         "orders_socket":false,
-         "trades":true,
-         "trades_by_timestamp":false,
-         "trades_socket":false
-      }
+    "name":"GO.Exchange",
+    "description":"GO.Exchange",
+    "logo":"https://go.exchange/asset/logo.png",
+    "twitter":"https://twitter.com/GOExchangeHQ",
+    "website":"https://go.exchange",
+    "result":{
+    "capability":{
+        "candles":false,
+        "markets":true,
+        "orders":false,
+        "orders_snapshot":true,
+        "orders_socket":false,
+        "trades":true,
+        "trades_by_timestamp":false,
+        "trades_socket":false
+    }
 }
 ```
 
@@ -200,7 +200,7 @@ The /trades endpoint returns executed trades historically for a given market (pr
 
 #### Parameters
 
-- `:symbol`: (required) A symbol name from the /symbols endpoint
+- `:symbol`: **(required)** A symbol name from the /symbols endpoint
 - `after`: An ID of the next page from /trades response. If none is provided, the latest trades will be returned
 - `before`: An ID of the previous page from /trades response. If none is provided, the latest trades will be returned
 - `limit`: the limit number of the result in /trades response. If none is provided, the default value is 20 and the maximum is 50
@@ -273,7 +273,7 @@ Example:
 
 #### Parameters
 
-- `:symbol`: (required) A symbol name from the /symbols endpoint
+- `:symbol`: **(required)** A symbol name from the /symbols endpoint
 
 #### Response
 
